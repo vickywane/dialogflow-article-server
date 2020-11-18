@@ -1,70 +1,30 @@
 require("dotenv").config();
 const { MongoClient } = require("mongodb");
-const { Schema, model, connect } = require("mongoose");
-
-const FoodSchema = Schema({
-  name: {
-    type: String,
-    required: true,
-  },
-  description: {
-    type: String,
-    required: true,
-  },
-  price: {
-    type: Number,
-    required: true,
-  },
-  availableUnits: {
-    type: Number,
-    default: 0,
-  },
-  currency: {
-    type: String,
-    default: "USD",
-  },
-});
-
-const Meals = model("Meals", FoodSchema);
 
 exports.foodFunction = async (req, res) => {
+  const { foodName } = req.body;
   const CONNECTION_URI = process.env.MONGODB_URI;
 
   // initate a connection to the deployed mongodb cluster
 
-  MongoClient.connect(
-    CONNECTION_URI,
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    },
-    (err, db) => {
-      if (err) {
-      }
+  const client = new MongoClient(CONNECTION_URI, {
+    useNewUrlParser: true,
+    // useUnifiedTopology: true,
+  });
 
-      const collec = db.db("dialogflow-food-service");
+  client.connect(async (err) => {
+    const collection = client.db(process.env.DATABASE_NAME).collection("Meals");
 
-      collec.collection("Meals").find({ name: "Fries" }, (err, data) => {
-        console.log(data);
-      });
-    }
-  );
+    // const cursor = collection.find({});
 
-  //   Mongodb.connect(
-  //     CONNECTION_URI,
-  //     {
-  //       useNewUrlParser: true,
-  //       useUnifiedTopology: true,
-  //     },
-  //     (err, database) => {
-  //       if (err) {
-  //         res.status(503).send({
-  //           error: err,
-  //           status: "MONGO DB CONNECTION REFUSED",
-  //         });
-  //       }
+    // const data = await cursor.toArray();
 
-  //       console.log(database);
-  //     }
-  //   );
+    const data = collection.find({ name: foodName });
+
+    data.forEach((item) => {
+      res.status(200).send({ item });
+    });
+
+    client.close();
+  });
 };
