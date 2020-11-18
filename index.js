@@ -2,28 +2,41 @@ require("dotenv").config();
 const { MongoClient } = require("mongodb");
 
 exports.foodFunction = async (req, res) => {
-  const { foodName } = req.body;
+  const { foodName } = req.query;
   const CONNECTION_URI = process.env.MONGODB_URI;
-
   // initate a connection to the deployed mongodb cluster
 
   const client = new MongoClient(CONNECTION_URI, {
     useNewUrlParser: true,
-    // useUnifiedTopology: true,
   });
 
   client.connect(async (err) => {
+    if (err) {
+      res
+        .status(500)
+        .send({ status: "MONGODB CONNECTION REFUSED", error: err });
+    }
     const collection = client.db(process.env.DATABASE_NAME).collection("Meals");
 
     // const cursor = collection.find({});
-
     // const data = await cursor.toArray();
 
-    const data = collection.find({ name: foodName });
+    try {
+      const data = collection.find({ name: foodName });
+      const result = [];
 
-    data.forEach((item) => {
-      res.status(200).send({ item });
-    });
+      result.push(
+        data.forEach((item) => {
+          result.push(item);
+        })
+      );
+
+      Promise.all(result)
+        .then((_) => res.status(200).send({ data: result }))
+        .catch((e) => res.status(400).send({ error: e }));
+    } catch (e) {
+      res.status(400).send({ error: e });
+    }
 
     client.close();
   });
