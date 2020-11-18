@@ -1,108 +1,70 @@
-const fs = require("fs");
-const util = require("util");
-const { Transform, pipeline } = require("stream");
-const { struct } = require("pb-util");
-const { v4: uuid } = require("uuid");
-const path = require("path");
+require("dotenv").config();
+const { MongoClient } = require("mongodb");
+const { Schema, model, connect } = require("mongoose");
 
-const pump = util.promisify(pipeline);
-// Imports the Dialogflow library
-const dialogflow = require("@google-cloud/dialogflow");
-
-// Instantiates a session client
-const sessionClient = new dialogflow.SessionsClient({
-  keyFilename: path.join(__dirname, "./dialogflow-key.json"),
+const FoodSchema = Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  availableUnits: {
+    type: Number,
+    default: 0,
+  },
+  currency: {
+    type: String,
+    default: "USD",
+  },
 });
 
-// The path to the local file on which to perform speech recognition, e.g.
-// /path/to/audio.raw const filename = '/path/to/audio.raw';
+const Meals = model("Meals", FoodSchema);
 
-// The encoding of the audio file, e.g. 'AUDIO_ENCODING_LINEAR_16'
-const encoding = "AUDIO_ENCODING_MP3";
+exports.foodFunction = async (req, res) => {
+  const CONNECTION_URI = process.env.MONGODB_URI;
 
-// The sample rate of the audio file in hertz, e.g. 16000
-const sampleRateHertz = 16000;
+  // initate a connection to the deployed mongodb cluster
 
-// The BCP-47 language code to use, e.g. 'en-US'
-const languageCode = "en-US";
-const sessionId = uuid();
-
-const sessionPath = sessionClient.projectAgentSessionPath(
-  "monday-voice-assistant-yqqo",
-  sessionId
-);
-
-// console.log(sessionPath);
-
-const initialStreamRequest = {
-  session: sessionPath,
-  queryInput: {
-    audioConfig: {
-      audioEncoding: encoding,
-      sampleRateHertz: sampleRateHertz,
-      languageCode: languageCode,
+  MongoClient.connect(
+    CONNECTION_URI,
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     },
-    singleUtterance: true,
-  },
-};
-
-// Create a stream for the streaming request.
-const detectStream = sessionClient
-  .streamingDetectIntent()
-  .on("error", console.error)
-  .on("data", (data) => {
-    if (data.recognitionResult) {
-      console.log(
-        `Intermediate transcript: ${data.recognitionResult.transcript}`
-      );
-    } else {
-      console.log("Detected intent:");
-
-      const result = data.queryResult;
-      // Instantiates a context client
-      const contextClient = new dialogflow.ContextsClient();
-
-      console.log(`  Query: ${result.queryText}`);
-      console.log(`  Response: ${result.fulfillmentText}`);
-      if (result.intent) {
-        console.log(`  Intent: ${result.intent.displayName}`);
-      } else {
-        console.log("  No intent matched.");
+    (err, db) => {
+      if (err) {
       }
-      const parameters = JSON.stringify(struct.decode(result.parameters));
-      console.log(`  Parameters: ${parameters}`);
-      if (result.outputContexts && result.outputContexts.length) {
-        console.log("  Output contexts:");
-        result.outputContexts.forEach((context) => {
-          const contextId = contextClient.matchContextFromProjectAgentSessionContextName(
-            context.name
-          );
-          const contextParameters = JSON.stringify(
-            struct.decode(context.parameters)
-          );
-          console.log(`    ${contextId}`);
-          console.log(`      lifespan: ${context.lifespanCount}`);
-          console.log(`      parameters: ${contextParameters}`);
-        });
-      }
+
+      const collec = db.db("dialogflow-food-service");
+
+      collec.collection("Meals").find({ name: "Fries" }, (err, data) => {
+        console.log(data);
+      });
     }
-  });
+  );
 
-// Write the initial stream request to config for audio input.
-detectStream.write(initialStreamRequest);
-// monday - voice - assistant - yqqo;
-// Stream an audio file from disk to the Conversation API, e.g.
-// "./resources/audio.raw"
-pump(
-  fs.createReadStream("./TEST-RECORD.mp3"),
-  // Format the audio stream into the request format.
-  new Transform({
-    objectMode: true,
-    transform: (obj, _, next) => {
-      next(null, { inputAudio: obj });
-    },
-  }),
-  detectStream
-)
-  .then((res) => console.log(res))
-  .catch((e) => console.log(`errore : ${e}`));
+  //   Mongodb.connect(
+  //     CONNECTION_URI,
+  //     {
+  //       useNewUrlParser: true,
+  //       useUnifiedTopology: true,
+  //     },
+  //     (err, database) => {
+  //       if (err) {
+  //         res.status(503).send({
+  //           error: err,
+  //           status: "MONGO DB CONNECTION REFUSED",
+  //         });
+  //       }
+
+  //       console.log(database);
+  //     }
+  //   );
+};

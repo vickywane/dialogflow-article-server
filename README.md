@@ -1,3 +1,4 @@
-# A Voice assistant app for Monday.com
+# Dialogflow Cloud functions
 
-## This project is part of my participation in the Monday.com hackathon.
+<p> Cloud functions created here are written to work with the dialogflow agent built in my article on Conversational Chat bots 
+on Smashing Magazine. </p>

@@ -1,0 +1,122 @@
+[
+    {
+      "name": "Shredded Beef",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 4.0,
+      "availableUnits": 5},
+    {
+      "name": "Shredded Chicken",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 5.0,
+      "availableUnits": 1},
+    {
+      "name": "Beef Curry Sauce",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 6.0,
+      "availableUnits": 1},
+    {
+      "name": "Chicken Stir Fry",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 8.0,
+      "availableUnits": 3},
+    {
+      "name": "Sweet Sour Sauce",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 10.0,
+      "availableUnits": 0},
+    {
+      "name": "Fries",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 2.0,
+      "availableUnits": 7},
+    {
+      "name": "Mixed Veggies",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 3.0,
+      "availableUnits": 9},
+    {
+      "name": "Spring Onion",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 4.0,
+      "availableUnits": 10},
+    {
+      "name": "Toast",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 9.0,
+      "availableUnits": 11},
+    {
+      "name": "Eggs",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 12.0,
+      "availableUnits": 21},
+    {
+      "name": "Tuna",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 32.0,
+      "availableUnits": 4},
+    {
+      "name": "Sandwich",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 12.0,
+      "availableUnits": 8},
+    {
+      "name": "Eggs Sausage Wrap",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 15.0,
+      "availableUnits": 7},
+    {
+      "name": "Club Sandwich",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 8.0,
+      "availableUnits": 9},
+    {
+      "name": "Pancakes",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 13.0,
+      "availableUnits": 2},
+    {
+      "name": "Cashew Nuts",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 5.0,
+      "availableUnits": 3},
+    {
+      "name": "Sweet Veggies",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 57.0,
+      "availableUnits": 9},
+    {
+      "name": "Chicken Salad",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 8.0,
+      "availableUnits": 12},
+    {
+      "name": "Crunchy Chicken",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 16.0,
+      "availableUnits": 14},
+    {
+      "name": "Apple Red Kidney Beans",
+      "description":
+        "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
+      "price": 56.0,
+      "availableUnits": 12},
+  ];
