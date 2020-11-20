@@ -1,8 +1,9 @@
 require("dotenv").config();
-const { MongoClient } = require("mongodb");
 
 exports.foodFunction = async (req, res) => {
-  const { foodName } = req.query;
+  const { MongoClient } = require("mongodb");
+
+  const { food } = req.body.queryResult.parameters;
   const CONNECTION_URI = process.env.MONGODB_URI;
   // initate a connection to the deployed mongodb cluster
 
@@ -10,7 +11,7 @@ exports.foodFunction = async (req, res) => {
     useNewUrlParser: true,
   });
 
-  client.connect(async (err) => {
+  client.connect((err) => {
     if (err) {
       res
         .status(500)
@@ -18,25 +19,38 @@ exports.foodFunction = async (req, res) => {
     }
     const collection = client.db(process.env.DATABASE_NAME).collection("Meals");
 
-    // const cursor = collection.find({});
-    // const data = await cursor.toArray();
+   
 
-    try {
-      const data = collection.find({ name: foodName });
-      const result = [];
+    // res.status(200).json(response);
 
-      result.push(
-        data.forEach((item) => {
-          result.push(item);
-        })
-      );
+    const data = collection.find({ name: food });
+    const result = [];
 
-      Promise.all(result)
-        .then((_) => res.status(200).send({ data: result }))
-        .catch((e) => res.status(400).send({ error: e }));
-    } catch (e) {
-      res.status(400).send({ error: e });
-    }
+    result.push(
+      data.forEach((item) => {
+        result.push(item);
+      })
+    );
+
+    Promise.all(result)
+      .then((_) => {
+        const { name, availableUnits, price, description } = result[1];
+        // const responseText =
+
+        const response = {
+          fulfillmentText: "This is a text response",
+          fulfillmentMessages: [
+            {
+              text: {
+                text: [`${name} are available in ${availableUnits} each at ${price}.`],
+              },
+            },
+          ],
+        };
+
+        res.status(200).json(response);
+      })
+      .catch((e) => res.status(400).send({ error: e }));
 
     client.close();
   });
