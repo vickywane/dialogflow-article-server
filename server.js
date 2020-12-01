@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import bodyParser from "body-parser";
 import Routes from "./routes";
+import Agent from "./agent"
 
 dotenv.config();
 const app = express();
@@ -32,6 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 
-app.use("/api/routes", Routes);
+app.use("/api/routes", Routes);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+app.use("/api/agent", Agent);
 
 app.listen(PORT, () => console.log(`🔥  server running on port ${PORT}`));
