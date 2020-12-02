@@ -11,18 +11,18 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const MONGO_URI = process.env.MONGO_URI;
-
-mongoose
+console.log(MONGO_URI);
+mongoose 
   .connect(`${MONGO_URI}`, {
     useNewUrlParser: true,
     useFindAndModify: false,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("🥰 mongodb connected 🥰 "))
+  .then(() => console.log("🥰 mongodb connected 🥰"))
   .catch(() =>
     console.log(
       "========== 😢 We are unable to connect to the mongo db 😢 =========="
-    )
+    )  
   );
 
 app.use(cors());
