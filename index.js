@@ -6,6 +6,8 @@ exports.foodFunction = async (req, res) => {
   const CONNECTION_URI = process.env.MONGODB_URI;
   // initate a connection to the deployed mongodb cluster
 
+  const { parameters } = req.body.queryResult;
+
   const client = new MongoClient(CONNECTION_URI, {
     useNewUrlParser: true,
   });
@@ -22,7 +24,7 @@ exports.foodFunction = async (req, res) => {
     // const data = await cursor.toArray();
 
     try {
-      const data = collection.find({ name: foodName });
+      const data = collection.find({ name: parameters.food });
       const result = [];
 
       result.push(
@@ -32,7 +34,10 @@ exports.foodFunction = async (req, res) => {
       );
 
       Promise.all(result)
-        .then((_) => res.status(200).send({ data: result }))
+        .then((_) => {
+            console.log(result);
+          res.status(200).send({ data: result });
+        })
         .catch((e) => res.status(400).send({ error: e }));
     } catch (e) {
       res.status(400).send({ error: e });
