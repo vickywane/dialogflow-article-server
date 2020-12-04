@@ -5,17 +5,22 @@ import { v4 as uuid } from "uuid";
 import Path from "path";
 
 const app = express();
- 
+
 app.get("/agent-webhook", (req, res) => {});
 
-app.get("/get-response", async (req, res) => {
+app.post("/get-response", async (req, res) => {
   // Create a new session
 
+  const { message } = req.body;
+
   const sessionClient = new Dialogflow.SessionsClient({
-    keyFilename: Path.join(__dirname, "./dialogflow-key.json"),
+    keyFilename: Path.join(__dirname, "./recommender-key.json"),
   });
 
-  const sessionPath = sessionClient.projectAgentSessionPath(process.env.PROJECT_ID, uuid());
+  const sessionPath = sessionClient.projectAgentSessionPath(
+    process.env.PROJECT_ID,
+    uuid()
+  );
 
   // The text query request.
   const request = {
@@ -23,7 +28,7 @@ app.get("/get-response", async (req, res) => {
     queryInput: {
       text: {
         // The query to send to the dialogflow agent
-        text: "hello",
+        text: message,
         // The language used by the client (en-US)
         languageCode: "en-US",
       },
@@ -31,18 +36,15 @@ app.get("/get-response", async (req, res) => {
   };
 
   // Send request and log result
-  const responses = await sessionClient.detectIntent(request);
+  try {
+    const responses = await sessionClient.detectIntent(request);
 
-  console.log(responses);
-  console.log("Detected intent");
-  const result = responses[0].queryResult;
-  console.log(`  Query: ${result.queryText}`);
-  console.log(`  Response: ${result.fulfillmentText}`);
-  if (result.intent) {
-    console.log(`Intent: ${result.intent.displayName}`);
-  } else {
-    console.log(`No intent matched.`);
+    res.status(200).send({ data: responses });
+  } catch (e) {
+    console.log(e);
+    res.status(422).send({ e });
   }
+
 });
 
 app.post("/post-response", (req, res) => {});

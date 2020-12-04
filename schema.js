@@ -21,6 +21,7 @@ const FoodSchema = new Schema({
     type: String,
     default: "USD",
   },
+  image_uri : String
 });
 
 export default model("Meals", FoodSchema);
