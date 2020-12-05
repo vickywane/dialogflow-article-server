@@ -1,185 +1,81 @@
- const test = [
+const test = [
   {
-    name: "Shredded Beef",
-    category : "",
-    description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 4.0,
-    availableUnits: 5,
+    name: "White Burgundy",
+    category: "Dry white wine",
+    description: "A dry white wine which is bold and full bodied.",
     image_uri:
-      "https://images.pexels.com/photos/5076309/pexels-photo-5076309.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1607129747/wine/white_burgundy-removebg-preview.png",
   },
   {
-    name: "Shredded Chicken",
+    name: "Merlot",
+    category: "Dry red wine",
     description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 5.0,
-    availableUnits: 1,
+      "A smooth and medium bodied red wine originally from the Bordeaux region of France",
     image_uri:
-      "https://images.pexels.com/photos/4552419/pexels-photo-4552419.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1607129747/wine/white_burgundy-removebg-preview.png",
   },
   {
-    name: "Beef Curry Sauce",
-    description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 6.0,
-    availableUnits: 1,
+    name: "Moscato",
+    category: "Dessert wine",
+    description: "A vibrant and aromatic wine from the Italian dessert plains.",
     image_uri:
-      "https://images.pexels.com/photos/4460190/pexels-photo-4460190.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1607129752/wine/moscato.png",
   },
   {
-    name: "Chicken Stir Fry",
+    name: "Sparkling Wine",
+    category: "Rose wine",
     description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 8.0,
-    availableUnits: 3,
+      "A great wine with significant levels of carbon dioxide in it, making it fizzy upon consumption",
     image_uri:
-      "https://images.pexels.com/photos/4409250/pexels-photo-4409250.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1607130312/wine/rose-wine-removebg-preview.png",
   },
   {
-    name: "Sweet Sour Sauce",
+    name: "Cream sherry",
+    category: "Sherry wine",
     description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 10.0,
-    availableUnits: 0,
+      "A Spanish fortified wine made from white grapes that are grown near the city of Jerez de la Frontera in Andalusia, Spain",
     image_uri:
-      "https://images.pexels.com/photos/4409250/pexels-photo-4409250.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1607129750/wine/cream_sherry-removebg-preview.png,
   },
   {
-    name: "Fries",
+    name: "Banyuls",
+    category: "Dessert wine",
     description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 2.0,
-    availableUnits: 7,
+      "A fortified dessert wine made from old vines cultivated in terraces on the slopes of the Catalan Pyrenees in the Roussillon county of France.",
     image_uri:
-      "https://images.pexels.com/photos/4409250/pexels-photo-4409250.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1607129752/wine/banyuls.png",
   },
   {
-    name: "Mixed Veggies",
+    name: "Madeira",
+    category: "Derset Wine",
     description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 3.0,
-    availableUnits: 9,
+      "A fortified dry wine originating from Madiera island of Portugal can be consumed alone as an aperitif.",
     image_uri:
-      "https://images.pexels.com/photos/4409250/pexels-photo-4409250.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1607129744/wine/madiera-removebg-preview.png",
   },
   {
-    name: "Spring Onion",
+    name: "Champange",
+    category: "Sparkling Wine",
     description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 4.0,
-    availableUnits: 10,
+      "A sparkling white wine made from a blend of grapes, especially Chardonnay and pinot, produced in Champagne by the méthode champenoise",
     image_uri:
-      "https://images.pexels.com/photos/4552419/pexels-photo-4552419.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1607129751/wine/champange-removebg-preview.png",
   },
   {
-    name: "Toast",
-    description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 9.0,
-    availableUnits: 11,
+    name: "Pinotage",
+    category: "Red Wine",
+    description: "A red wine made with grapes from the South African regions",
     image_uri:
-      "https://images.pexels.com/photos/4552419/pexels-photo-4552419.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1607129748/wine/pinotage.png",
   },
   {
-    name: "Eggs",
+    name: "Pinot Noir",
+    category: "Dry Red Wine",
     description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 12.0,
-    availableUnits: 21,
+      "A French red wine mostly made from Pinot Noir grapes which are grown in several regions around the world.",
     image_uri:
-      "https://images.pexels.com/photos/4552419/pexels-photo-4552419.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-  },
-  {
-    name: "Tuna",
-    description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    image_uri:
-      "https://images.pexels.com/photos/4552419/pexels-photo-4552419.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-    price: 32.0,
-    availableUnits: 4,
-  },
-  {
-    name: "Sandwich",
-    description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 12.0,
-    availableUnits: 8,
-    image_uri:
-      "https://images.pexels.com/photos/4552419/pexels-photo-4552419.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-  },
-  {
-    name: "Eggs Sausage Wrap",
-    description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 15.0,
-    image_uri:
-      "https://images.pexels.com/photos/4552419/pexels-photo-4552419.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-    availableUnits: 7,
-  },
-  {
-    name: "Club Sandwich",
-    description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 8.0,
-    availableUnits: 9,
-    image_uri:
-      "https://images.pexels.com/photos/4552419/pexels-photo-4552419.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-  },
-  {
-    name: "Pancakes",
-    description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 13.0,
-    availableUnits: 2,
-    image_uri:
-      "https://images.pexels.com/photos/4552419/pexels-photo-4552419.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-  },
-  {
-    name: "Cashew Nuts",
-    description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 5.0,
-    availableUnits: 3,
-    image_uri:
-      "https://images.pexels.com/photos/4552419/pexels-photo-4552419.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-  },
-  {
-    name: "Sweet Veggies",
-    description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 57.0,
-    availableUnits: 9,
-    image_uri:
-      "https://images.pexels.com/photos/4409250/pexels-photo-4409250.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
-  },
-  {
-    name: "Chicken Salad",
-    description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 8.0,
-    availableUnits: 12,
-    image_uri:
-      "https://images.pexels.com/photos/4409250/pexels-photo-4409250.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
-  },
-  {
-    name: "Crunchy Chicken",
-    description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 16.0,
-    availableUnits: 14,
-    image_uri:
-      "https://images.pexels.com/photos/4409250/pexels-photo-4409250.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
-  },
-  {
-    name: "Apple Red Kidney Beans",
-    description:
-      "A delicious, healthy meal, prepared by our chef to be delivered to your doorstep.",
-    price: 56.0,
-    availableUnits: 12,
-    image_uri:
-      "https://images.pexels.com/photos/4409250/pexels-photo-4409250.jpeg?auto=compress&cs=tinysrgb&h=750&w=1260",
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1607130312/wine/pinot-noir-removebg-preview.png",
   },
 ];
 
-export default test
+export default test;
