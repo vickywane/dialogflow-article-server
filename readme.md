@@ -1,6 +1,6 @@
 # Dialogflow Backend Application
 
-<p> Hey there, welcome to the backend application for my articles on using Dialog published to **Smashing Magazine**</p>
+<p> Hey there, welcome to the backend application for my articles on using Dialog published to [Smashing Magazine]("https://www.smashingmagazine.com/")</p>
 
 <p> This Repository contains two branches for the following articles:</p>
 
