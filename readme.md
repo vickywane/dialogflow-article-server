@@ -4,7 +4,8 @@
 
 <p> This Repository contains two branches for the following articles:</p>
 
-### Building A Conversational N.L.P Enabled Chatbot Using Google’s Dialogflow("https://www.smashingmagazine.com/2020/12/conversational-nlp-enabled-chatbot-google-dialogflow/") [Default Branch]
+### Building A Conversational N.L.P Enabled Chatbot Using Google’s Dialogflow [Default Branch]
+https://www.smashingmagazine.com/2020/12/conversational-nlp-enabled-chatbot-google-dialogflow/
     
     This branch contains the webhooks built in the article linked above. The webhooks are served using Google Cloud Functions. It connects to a Dialogflow Agent on the Google cloud using a service account key. (see article for connection details). Clone the branch and run `yarn install` to install the needed packages. Then run `yarn start` to start the defined functions locally using the Functions Framework
 
