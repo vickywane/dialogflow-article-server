@@ -35,7 +35,7 @@ const test = [
     description:
       "A Spanish fortified wine made from white grapes that are grown near the city of Jerez de la Frontera in Andalusia, Spain",
     image_uri:
-      "https://res.cloudinary.com/dkfptto8m/image/upload/v1607129750/wine/cream_sherry-removebg-preview.png,
+      "https://res.cloudinary.com/dkfptto8m/image/upload/v1607129750/wine/cream_sherry-removebg-preview.png",
   },
   {
     name: "Banyuls",
