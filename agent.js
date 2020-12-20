@@ -17,7 +17,7 @@ app.use(
 );
 
 app.post("/text-input", async (req, res) => {
-    // Create a new session
+    // Creates a new session
     const { message } = req.body;
 
     const sessionClient = new Dialogflow.SessionsClient({
